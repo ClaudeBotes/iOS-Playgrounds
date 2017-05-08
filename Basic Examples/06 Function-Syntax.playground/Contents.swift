@@ -4,13 +4,13 @@ func helloThere(name: String) -> String {
     return "Hello there \(name)!"
 }
 
-helloThere("students")
+helloThere(name: "People")
 
 func printNumber(number: Int) -> String {
     return "The number given was \(number)."
 }
 
-printNumber(345)
+printNumber(number: 345)
 
 func turnOffAppliance(appliance: String, isOn: Bool) {
     
@@ -22,24 +22,24 @@ func turnOffAppliance(appliance: String, isOn: Bool) {
     
 }
 
-turnOffAppliance("oven", isOn: false)
-turnOffAppliance("television", isOn: true)
+turnOffAppliance(appliance: "oven", isOn: false)
+turnOffAppliance(appliance: "television", isOn: true)
 
 func addition(number1: Int, number2: Int) -> Int {
     return number1 + number2
 }
 
-addition(45, number2: 987)
+addition(number1: 45, number2: 987)
 
 func multiply(num1: Int, num2: Int) -> String {
     let result = "\(num1 * num2)"
     return result
 }
 
-multiply(4567, num2: 8956)
+multiply(num1: 4567, num2: 8956)
 
 let a = 34
 let b = 49
 
-multiply(a, num2: b)
+multiply(num1: a, num2: b)
 

@@ -25,9 +25,9 @@ dogName
 
 //dogName.removeAll()
 
-dogName.enumerate()
+dogName.enumerated()
 
-for (index, name) in dogName.enumerate() {
+for (index, name) in dogName.enumerated() {
     print("\(index): \(name)")
 }
 

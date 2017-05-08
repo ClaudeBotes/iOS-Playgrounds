@@ -4,6 +4,7 @@ var items : [String : String] = [:]
 var products = [Int : String]()
 
 products[123] = "Product 1"
+products[1] = "Red Paint"
 
 products
 

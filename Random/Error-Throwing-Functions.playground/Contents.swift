@@ -2,21 +2,21 @@
 
 func greeting(person: [String: String]) {
     // Guard syntax
-    guard let name = person["name"] else {
+    guard let name = person["firstname"] else {
         return
     }
     
     print("Hello there \(name)")
 }
 
-greeting(["name":"Claude"])
+greeting(person: ["firstname" : "Claude"])
 
 // --> Error throwing
 
 var bankBalance : Double = 1000
 var bankIsAvailable = false
 
-enum BankingError : ErrorType {
+enum BankingError : Error {
     case InsufficientFunds
     case BankNotAvailable
 }
@@ -38,7 +38,7 @@ func withdrawl(amount: Double) throws -> Double {
 
 
 do {
-    var newBalance = try withdrawl(120)
+    var newBalance = try withdrawl(amount: 120)
     print("New balance is $\(newBalance)")
 } catch BankingError.InsufficientFunds {
     print("There are not enough funds in your account.")
