@@ -2,6 +2,62 @@ import UIKit
 
 let currentDate = Date()
 
+// Time Stamp from Current Date
+let timestamp = currentDate.timeIntervalSince1970
+
+func getTimeStampFromString(stringDate: String){
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+    let newDate = dateFormatter.date(from: stringDate)
+    
+    let timestamp = newDate?.timeIntervalSince1970
+    
+    print(timestamp)
+    
+}
+getTimeStampFromString(stringDate: "10-04-2019 23:59:12")
+
+func getDateFromTimestamp(timestamp: TimeInterval){
+
+    /**
+     Steps to get a date from a timestamp
+     */
+    let dateAndTime = Date(timeIntervalSince1970: TimeInterval(timestamp))
+    
+    /**
+     Steps to get a desired string from a date
+     */
+    let dateFormatter = DateFormatter()
+    
+    // Setting the locale.
+    dateFormatter.locale = NSLocale.current
+    // Set format: Thu, 08 Oct 2015 09:22:33 GMT
+    dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
+    // Print date in string format
+    let dateInString = dateFormatter.string(from: dateAndTime)
+    print(dateInString)
+    
+}
+getDateFromTimestamp(timestamp: timestamp)
+
+
+
+func getStringFromTimestamp(timestamp: TimeInterval){
+    
+    print()
+}
+
+
+
+// String from time stamp
+let myTimeInterval = TimeInterval(timestamp)
+let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+
+// Timestamp from String
+let stringSample = "Apr 15, 2019 at 9:27 PM"
+
+
 let dateFormatter = DateFormatter()
 
 // Setting the locale.
@@ -229,3 +285,6 @@ dateComponentsFormatter.string(from: interval!)
 // Method #3
 dateComponentsFormatter.allowedUnits = [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day, NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second]
 let autoFormattedDifference = dateComponentsFormatter.string(from: date1!, to: date2!)
+
+
+
