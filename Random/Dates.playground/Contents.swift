@@ -16,7 +16,29 @@ func getTimeStampFromString(stringDate: String){
     print(timestamp)
     
 }
-getTimeStampFromString(stringDate: "10-04-2019 23:59:12")
+
+let dates = ["10-04-2018 23:59:12",
+"13-04-2018 23:59:12",
+"13-04-2018 23:59:12",
+"15-04-2018 23:59:12",
+"19-04-2018 23:59:12",
+"20-04-2018 23:59:12",
+"21-04-2018 23:59:12",
+"22-04-2018 23:59:12",
+"25-04-2018 23:59:12",
+"26-04-2018 23:59:12",
+"27-04-2018 23:59:12",
+"28-04-2018 23:59:12",
+"28-04-2018 23:59:12",
+"29-04-2018 23:59:12",
+"29-04-2018 23:59:12"
+]
+
+for date in dates {
+    getTimeStampFromString(stringDate: date)
+}
+
+
 
 func getDateFromTimestamp(timestamp: TimeInterval){
 
