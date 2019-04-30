@@ -2,10 +2,74 @@ import UIKit
 
 let currentDate = Date()
 
-// Time Stamp from Current Date
+/*
+ Time Stamp from Current Date
+ */
 let timestamp = currentDate.timeIntervalSince1970
 
-func getTimeStampFromString(stringDate: String){
+func getPrettyDisplayDate(timestamp: TimeInterval){
+    
+    let calendar = NSCalendar.current
+    
+    // Get components for selected date
+    let dateAndTimeSelected = Date(timeIntervalSince1970: TimeInterval(timestamp))
+    let selectedDateComponents = calendar.dateComponents([Calendar.Component.day,
+                                                  Calendar.Component.month,
+                                                  Calendar.Component.year,
+                                                  Calendar.Component.weekOfYear,
+                                                  Calendar.Component.hour,
+                                                  Calendar.Component.minute,
+                                                  Calendar.Component.second,
+                                                  Calendar.Component.nanosecond], from: dateAndTimeSelected)
+    
+    // Get components for current date to compare with
+    let currentDate = Date()
+    let currentDateComponents = calendar.dateComponents([Calendar.Component.day,
+                                                          Calendar.Component.month,
+                                                          Calendar.Component.year,
+                                                          Calendar.Component.weekOfYear,
+                                                          Calendar.Component.hour,
+                                                          Calendar.Component.minute,
+                                                          Calendar.Component.second,
+                                                          Calendar.Component.nanosecond], from: currentDate)
+    
+    // Compare year
+    // ie: selected: 2018, current year: 2019, so: 2019 - 2018. If == 0 , then its the same year
+    if (((currentDateComponents.year! - selectedDateComponents.year!) == 0 )){
+        
+        print("Same year")
+        
+        // Compare month
+        // ie: selected: 02, current month: 03, so: 03 - 02. If == 0 , then its the same month
+        if ((currentDateComponents.month! - selectedDateComponents.month!) == 0 ){
+            
+            
+            
+            // Compare date
+            // ie: selected: 26, current day: 27, so: 27 - 26
+            if ((currentDateComponents.day! - selectedDateComponents.day!) == 1 ){
+                 print("Yesterday")
+                
+                // ie: selected: 26, current day: 25, so: 25 - 26
+            }else if ((currentDateComponents.day! - selectedDateComponents.day!) == -1 ){
+                print("Tomorrow")
+                
+                // ie: selected: 26, current day: 25, so: 26 - 26
+            }else if ((currentDateComponents.day! - selectedDateComponents.day!) == 0 ){
+                print("Today")
+            }else{
+                print("Same month, not in today, yesterday or tomz - return date format")
+            }
+        }else{
+           print("Same year, diff month - return date format")
+        }
+        
+    }else{
+       print("Diff year - return date format")
+    }
+}
+
+func getTimeStampFromString(stringDate: String) -> TimeInterval{
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
@@ -14,8 +78,15 @@ func getTimeStampFromString(stringDate: String){
     let timestamp = newDate?.timeIntervalSince1970
     
     print(timestamp)
-    
+    return timestamp!
 }
+
+let date = "26-04-2019 22:00:00"
+
+getPrettyDisplayDate(timestamp: getTimeStampFromString(stringDate: date))
+
+
+
 
 let dates = ["10-04-2018 23:59:12",
 "13-04-2018 23:59:12",
@@ -37,7 +108,6 @@ let dates = ["10-04-2018 23:59:12",
 for date in dates {
     getTimeStampFromString(stringDate: date)
 }
-
 
 
 func getDateFromTimestamp(timestamp: TimeInterval){
@@ -65,10 +135,6 @@ getDateFromTimestamp(timestamp: timestamp)
 
 
 
-func getStringFromTimestamp(timestamp: TimeInterval){
-    
-    print()
-}
 
 
 
@@ -118,10 +184,19 @@ convertedDate = dateFormatter.string(from: currentDate)
 
 
 // Converting from String to NSDate.
-var dateAsString = "24-12-2015 23:59"
-dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+//var dateAsString = "24-12-2015 23:59"
+//dateFormatter.dateFormat = "yyyy-dd-MM HH:mm:ss"
+var dateAsString = "2019-04-26 21:00:00 UTC"
+dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
 var newDate = dateFormatter.date(from: dateAsString)
 
+if Calendar.current.isDateInYesterday(newDate!) {
+    print(newDate)
+    print("yesterday")
+}else{
+    print(newDate)
+    print("im confused")
+}
 
 dateAsString = "Thu, 08 Oct 2015 09:22:33 GMT"
 dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
