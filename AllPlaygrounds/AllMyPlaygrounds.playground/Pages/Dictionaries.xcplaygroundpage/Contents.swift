@@ -1,5 +1,3 @@
-//: Collection types - dictionaries.
-
 var items : [String : String] = [:]
 var products = [Int : String]()
 
@@ -25,4 +23,3 @@ states
 for (abbrev, state) in states {
     print("\(abbrev) is short for \(state).")
 }
-

@@ -9,8 +9,8 @@ import Foundation
 class SayTime {
     var count = 0
     
-    func sayOne(timer: NSTimer!) {
-        count++
+    @objc func sayOne(timer: Timer!) {
+        count = count + 1
         NSLog("One second!")
         if count == 15 {
             NSLog("Fifteen seconds")
@@ -19,33 +19,36 @@ class SayTime {
         }
     }
     
-    func sayFive(timer: NSTimer!) {
+    @objc func sayFive(timer: Timer!) {
         NSLog("Five seconds!")
     }
     
-    func sayTen(timer: NSTimer!) {
+    @objc func sayTen(timer: Timer!) {
         NSLog("Ten seconds!")
     }
 }
 
 let hello = SayTime()
-let timer1 = NSTimer(timeInterval: 1.0,
+let timer1 = Timer(timeInterval: 1.0,
     target: hello,
-    selector: "sayOne:",
+    selector: #selector(hello.sayOne),
     userInfo: nil,
     repeats: true)
-let timer2 = NSTimer(timeInterval: 10.0,
+
+let timer2 = Timer(timeInterval: 10.0,
     target: hello,
-    selector: "sayTen:",
+    selector: #selector(hello.sayTen),
     userInfo: nil,
     repeats: false)
-let timer3 = NSTimer(timeInterval: 5.0,
+
+let timer3 = Timer(timeInterval: 5.0,
     target: hello,
-    selector: "sayFive:",
+    selector: #selector(hello.sayFive),
     userInfo: nil,
     repeats: false)
-NSRunLoop.currentRunLoop().addTimer(timer1, forMode: NSDefaultRunLoopMode)
-NSRunLoop.currentRunLoop().addTimer(timer2, forMode: NSDefaultRunLoopMode)
-NSRunLoop.currentRunLoop().addTimer(timer3, forMode: NSDefaultRunLoopMode)
-NSRunLoop.currentRunLoop().run()
+
+RunLoop.current.add(timer1, forMode: .common)
+RunLoop.current.add(timer2, forMode: .common)
+RunLoop.current.add(timer3, forMode: .common)
+//RunLoop.current.run()
 

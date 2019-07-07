@@ -14,7 +14,7 @@ greeting(person: ["firstname" : "Claude"])
 // --> Error throwing
 
 var bankBalance : Double = 1000
-var bankIsAvailable = false
+var bankIsAvailable = true
 
 enum BankingError : Error {
     case InsufficientFunds
