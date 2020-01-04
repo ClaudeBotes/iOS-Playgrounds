@@ -1,4 +1,4 @@
-# iOS-Playgrounds - [RETIRED]
+# iOS-Playgrounds
 Repo for random iOS Playgrounds.
 
 * Playgrounds should build and focus on something specific
